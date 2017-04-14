@@ -18,6 +18,9 @@ Chatroom Application frontend based on <a href="https://github.com/vaibhavkollip
 Now open browser and enter localhost url(http://127.0.0.1:4200)
 
 <hr/>
+<h3>Live Recording</h3>
+<a href="https://drive.google.com/file/d/0B4HVz3-jtVeTSzlBSXNmVG5icmc/view">Click here to view live preview video</a>
+
 <h3>Screenshots</h3>
 <img src="https://github.com/vaibhavkollipara/ChatroomFrontend/blob/master/screenshots/loginpage.PNG?raw=true"/>
 <img src="https://github.com/vaibhavkollipara/ChatroomFrontend/blob/master/screenshots/homepage.PNG?raw=true"/>
