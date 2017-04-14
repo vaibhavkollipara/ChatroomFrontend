@@ -1,0 +1,15 @@
+input.ng-valid{
+    border-left :  2px solid green;
+}
+
+input.ng-invalid{
+    border-left :  2px solid red;
+}
+
+.fullwidth{
+    width : 100%;
+}
+
+.downpad{
+    padding-bottom: 15px;
+}

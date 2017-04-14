@@ -1,0 +1,108 @@
+  <div class="row" style="padding-bottom:10px;">
+    <div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
+            <button style="width:100%;" (click)="goBack()" class="btn btn-primary">Back</button>
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-5">
+            <button style="width:100%;" class="btn btn-primary" (click)="exitChatroom()">Exit Group</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 col-md-7 col-md-offset-1 col-lg-7 col-lg-offset-1" style="padding-bottom:10px">
+      <form style="padding-top:35px;" class="form-inline" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div class="row">
+              <div class="col-sm-8 col-md-8 col-lg-8">
+                  <input type="text" style="width:100%;" class="form-control" placeholder="Your Message" formControlName="message">
+              </div>
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                  <button [disabled]="!messageForm.valid" type="submit" style="width:100%;" class="btn btn-primary">Send</button>
+              </div>
+          </div>
+      </form>
+      <hr>
+
+    <div class="scroll-area" *ngIf="chatMessage" style="width:100%;">
+        <div *ngFor="let message of chatMessage.results">
+            <div *ngIf="isMyMessage(message.sender)">
+                    <div class="row pull-right" style="margin:1px;width:80%;border-radius:15px;background-color:#ddf3ff;">
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-right" style="padding:10px;">
+                            {{ message.message }}<br>
+                            <span style="padding-top:10px;color:darkgrey">
+                            {{ message.timestamp| date:'short' }}
+                        </span>
+                        </div>
+                    </div>
+            </div>
+            <div *ngIf="!isMyMessage(message.sender)">
+                    <div class="row pull-left" style="margin:1px;width:80%;border-radius:15px;background-color:#efff99;">
+                        <div class="col-sm-3 col-md-3 col-lg-3" style="padding-top:10px;">
+                                <strong>{{ message.sender | uppercase}}</strong>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9" style="padding:10px;">
+                            {{ message.message }}<br>
+                            <span style="padding-top:10px;color:darkgrey">
+                            {{ message.timestamp| date:'short' }}
+                        </span>
+                        </div>
+                    </div>
+            </div>
+
+
+                    <!--<div class="row" [class.pull-right]="isMyMessage(message.sender)" [class.pull-left]="!isMyMessage(message.sender)" style="border:1px solid gray;margin:1px;width:80%;">
+                        <div class="col-sm-3 col-md-3 col-lg-3" style="padding-top:10px;">
+                                <strong>{{ message.sender | uppercase}}</strong>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9" style="padding:10px;">
+                            {{ message.message }}<br>
+                            <span style="padding-top:10px;">
+                            {{ message.timestamp| date:'short' }}
+                        </span>
+                        </div>
+                    </div>-->
+        
+        </div>
+    </div>
+
+
+
+        <!--<ul class="list-group scroll-area" *ngIf="chatMessage">
+            <li class="list-group-item justify-content-between">
+                <div class="" style="width:100%;height:100px;background-color:rebeccapurple;"></div>
+            </li>
+            <li class="list-group-item justify-content-between" *ngFor="let message of chatMessage.results">
+              {{ message.sender }} : {{ message.message }} <span class="badge badge-default badge-pill">{{ message.timestamp| date:'short' }}</span>
+            </li>
+            <li class="list-group-item justify-content-between" *ngIf="(chatMessage.count==0)">No Messages In This ChatRoom<br/></li>
+        </ul>-->
+
+    </div>
+
+    <div class="col-md-3 col-lg-3 text-center hidden-xs hidden-s" style="padding-bottom:10px">
+      <form style="padding-top:35px;" class="form-inline" [formGroup]="newMemberForm" (ngSubmit)="addMember()">
+          <div class="row">
+              <div class="col-sm-8 col-md-8 col-lg-8">
+                  <input (keyup)="userSuggestions()" type="text" style="width:100%;" class="form-control" placeholder="New Member" formControlName="username">
+              </div>
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                  <button type="submit" style="width:100%;" class="btn btn-primary">Add</button>
+              </div>
+          </div>
+          <div class="row" *ngIf="suggestedUsers">
+              <div col-sm-12 col-md-12 col-lg-12>
+                    <ul class="list-group" style="position:absolute;z-index:1;width:100%;">
+                        <li class="list-group-item justify-content-between" *ngFor="let user of suggestedUsers" (click)="newMemBySuggestion(user)">
+                            {{ user.fullname }}<span class="badge badge-default badge-pill">{{ user.email }}</span>
+                        </li>
+                    </ul>
+              </div>
+          </div>
+      </form>
+      <hr>
+      <ul class="list-group  scroll-area" *ngIf="members">
+            <li class="list-group-item justify-content-between" *ngFor="let member of members">
+              {{ member.name }} <span class="badge badge-default badge-pill"><span class="glyphicon glyphicon-star"></span></span>
+            </li>
+        </ul>
+    </div>
+
+  </div>

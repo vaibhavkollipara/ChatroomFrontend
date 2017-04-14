@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <div class=" col-sm-10 col-sm-offset-1">
+      <!--<h3 class="well text-center">Login</h3>-->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <input autofocus type="text" class="form-control  fullwidth" formControlName="username" placeholder="username">
+                    <div *ngIf="loginForm.controls['username'].hasError('required') && !loginForm.controls['username'].untouched " class="alert alert-danger">
+                      Please Enter Username
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control  fullwidth" formControlName="password" placeholder="password">
+                    <div *ngIf="loginForm.controls['password'].hasError('required')  && !loginForm.controls['password'].untouched" class="alert alert-danger">
+                      Please Enter Password
+                    </div>
+                </div>   
+                <div class="col-sm-2">
+                  <button [disabled]="isLoginSubmitable()" class="btn btn-primary fullwidth" type="submit">Login</button>
+                </div>          
+            </div>
+
+          </form>
+    </div>
+    <div *ngIf="errorMsg" style="margin-top:2%;" class="text-center col-sm-4 col-sm-offset-4 alert alert-danger">
+        Invalid Credentials
+    </div>
+  </div>
+<hr>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <h3 class="well text-center">New User</h3>
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <div class="row downpad">
+            <div class="col-sm-6">
+                <input type="text" class="form-control  fullwidth" formControlName="first" placeholder="First Name">
+                    <div *ngIf="signUpForm.controls['first'].hasError('required') && !signUpForm.controls['first'].untouched " class="alert alert-danger">
+                      Please Enter First Name
+                    </div>
+                    <div *ngIf="signUpForm.controls['first'].hasError('minlength') && !signUpForm.controls['first'].untouched " class="alert alert-danger">
+                      Firstname should have atleast 4 characters
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control  fullwidth" formControlName="last" placeholder="Last Name">
+                    <div *ngIf="signUpForm.controls['last'].hasError('required') && !signUpForm.controls['last'].untouched " class="alert alert-danger">
+                      Please Enter Last Name
+                    </div>
+                    <div *ngIf="signUpForm.controls['last'].hasError('minlength') && !signUpForm.controls['last'].untouched " class="alert alert-danger">
+                      Lastname should have atleast 4 characters
+                    </div>
+            </div>
+          </div>
+          <div class="row downpad">
+            <div class="col-sm-12">
+                <input type="text" class="form-control  fullwidth" formControlName="email" placeholder="email">
+                    <div *ngIf="signUpForm.controls['email'].hasError('required') && !signUpForm.controls['email'].untouched " class="alert alert-danger">
+                      Please Enter Email
+                    </div>
+                    <div *ngIf="signUpForm.controls['email'].hasError('email') && !signUpForm.controls['email'].untouched " class="alert alert-danger">
+                       Email not valid
+                    </div>
+            </div>
+          </div>
+          <div class="row  downpad">
+            <div class="col-sm-6">
+                <input type="text" class="form-control  fullwidth" formControlName="username" placeholder="Username">
+                    <div *ngIf="signUpForm.controls['username'].hasError('required') && !signUpForm.controls['username'].untouched " class="alert alert-danger">
+                      Please Enter Userame
+                    </div>
+                    <div *ngIf="signUpForm.controls['username'].hasError('minlength') && !signUpForm.controls['username'].untouched " class="alert alert-danger">
+                      Username should have atleast 4 characters
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <input type="password" class="form-control  fullwidth" formControlName="password" placeholder="Password">
+                    <div *ngIf="signUpForm.controls['password'].hasError('required') && !signUpForm.controls['password'].untouched " class="alert alert-danger">
+                      Please Enter Password
+                    </div>
+                    <div *ngIf="signUpForm.controls['password'].hasError('minlength') && !signUpForm.controls['password'].untouched " class="alert alert-danger">
+                      Password should have atleast 5 characters
+                    </div>
+            </div>
+
+          </div>
+          <div class="row  downpad">
+            <div class="col-sm-12 text-center">
+              <button [disabled]="isSignupSubmitable()" class="btn btn-primary" style="width:50%">Signup</button>
+            </div>
+
+          </div>
+        </form>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <h3>&copy; Vaibhav Kollipara</h3>
+    <h4>vkollip1@binghamton.edu</h4>
+  </div>
+
+</div>
